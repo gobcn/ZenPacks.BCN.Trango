@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configure xmlns="http://namespaces.zope.org/browser">
+
+    <!-- A resource directory contains static web content. -->
+    <resourceDirectory
+        name="Trango"
+        directory="resources"
+        />
+
+
+    <!-- Register custom JavaScript for ExampleDevices. -->
+    <viewlet
+        name="js-trango"
+        paths="/++resource++Trango/js/TrangoAccessPointDevice.js"
+        weight="10"
+        for="..TrangoAccessPointDevice.TrangoAccessPointDevice"
+        manager="Products.ZenUI3.browser.interfaces.IJavaScriptSrcManager"
+        class="Products.ZenUI3.browser.javascript.JavaScriptSrcBundleViewlet"
+        permission="zope2.Public"
+        />
+
+</configure>
