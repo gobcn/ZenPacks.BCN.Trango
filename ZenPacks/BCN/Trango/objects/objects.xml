@@ -11,6 +11,9 @@ ZenPacks.BCN.Trango.TrangoAccessPointDevice
 <property visible="True" type="int" id="zMaxOIDPerRequest" >
 1
 </property>
+<property visible="True" type="string" id="zIcon" >
+/zport/dmd/trangom900.png
+</property>
 <tomanycont id='rrdTemplates'>
 <object id='TrangoAccessPointEthernet' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
 <property id='zendoc' type='string'>
@@ -1329,12 +1332,15 @@ AVERAGE
 </object>
 </tomanycont>
 </object>
-<object id='Signal' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<object id='Signal - RSSI' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
 <property type="int" id="height" mode="w" >
 100
 </property>
 <property type="int" id="width" mode="w" >
 500
+</property>
+<property type="string" id="units" mode="w" >
+dBm
 </property>
 <property type="boolean" id="log" mode="w" >
 False
@@ -1353,6 +1359,92 @@ True
 </property>
 <property type="long" id="sequence" mode="w" >
 2
+</property>
+<tomanycont id='graphPoints'>
+<object id='Rx Threshold' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf%s
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+aprfRxThreshold_aprfRxThreshold
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+<object id='Target RSSI' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+1
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf%s
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+aprfTargetRSSI_aprfTargetRSSI
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Signal - Transmit Power' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+dB
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+-1
+</property>
+<property type="int" id="maxy" mode="w" >
+-1
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+3
 </property>
 <tomanycont id='graphPoints'>
 <object id='Maximum Power (Tx)' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
@@ -1383,7 +1475,7 @@ AVERAGE
 </object>
 <object id='Minimum Power (Tx)' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
 <property type="long" id="sequence" mode="w" >
-1
+2
 </property>
 <property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
 LINE
@@ -1412,7 +1504,7 @@ AVERAGE
 </object>
 <object id='Power (Tx)' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
 <property type="long" id="sequence" mode="w" >
-2
+1
 </property>
 <property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
 LINE
@@ -1434,64 +1526,6 @@ ${graphPoint/id}
 </property>
 <property type="string" id="dpName" mode="w" >
 aprfTxPower_aprfTxPower
-</property>
-<property type="string" id="cFunc" mode="w" >
-AVERAGE
-</property>
-</object>
-<object id='Rx Threshold' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
-<property type="long" id="sequence" mode="w" >
-3
-</property>
-<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
-LINE
-</property>
-<property type="long" id="lineWidth" mode="w" >
-1
-</property>
-<property type="boolean" id="stacked" mode="w" >
-False
-</property>
-<property type="string" id="format" mode="w" >
-%5.2lf%s
-</property>
-<property type="string" id="legend" mode="w" >
-${graphPoint/id}
-</property>
-<property type="long" id="limit" mode="w" >
--1
-</property>
-<property type="string" id="dpName" mode="w" >
-aprfRxThreshold_aprfRxThreshold
-</property>
-<property type="string" id="cFunc" mode="w" >
-AVERAGE
-</property>
-</object>
-<object id='Target RSSI' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
-<property type="long" id="sequence" mode="w" >
-4
-</property>
-<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
-LINE
-</property>
-<property type="long" id="lineWidth" mode="w" >
-1
-</property>
-<property type="boolean" id="stacked" mode="w" >
-False
-</property>
-<property type="string" id="format" mode="w" >
-%5.2lf%s
-</property>
-<property type="string" id="legend" mode="w" >
-${graphPoint/id}
-</property>
-<property type="long" id="limit" mode="w" >
--1
-</property>
-<property type="string" id="dpName" mode="w" >
-aprfTargetRSSI_aprfTargetRSSI
 </property>
 <property type="string" id="cFunc" mode="w" >
 AVERAGE
@@ -2805,12 +2839,15 @@ AVERAGE
 </object>
 </tomanycont>
 </object>
-<object id='Signal' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<object id='Signal - RSSI' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
 <property type="int" id="height" mode="w" >
 100
 </property>
 <property type="int" id="width" mode="w" >
 500
+</property>
+<property type="string" id="units" mode="w" >
+dBm
 </property>
 <property type="boolean" id="log" mode="w" >
 False
@@ -2832,6 +2869,9 @@ True
 </property>
 <tomanycont id='graphPoints'>
 <object id='RSSI at AP' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+1
+</property>
 <property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
 LINE
 </property>
@@ -2858,9 +2898,6 @@ AVERAGE
 </property>
 </object>
 <object id='RSSI at SU' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
-<property type="long" id="sequence" mode="w" >
-1
-</property>
 <property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
 LINE
 </property>
@@ -2886,10 +2923,38 @@ suRSSIAtSU_suRSSIAtSU
 AVERAGE
 </property>
 </object>
-<object id='Transmit Power at SU' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
-<property type="long" id="sequence" mode="w" >
-2
+</tomanycont>
+</object>
+<object id='Signal - Transmit Power' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
 </property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+dB
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+-1
+</property>
+<property type="int" id="maxy" mode="w" >
+-1
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+4
+</property>
+<tomanycont id='graphPoints'>
+<object id='Transmit Power at SU' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
 <property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
 LINE
 </property>
@@ -3080,7 +3145,6 @@ elif evt.summary.startswith('threshold of high utilization '):
 
       evt.message = evt.summary
       break
-
 </property>
 <property type="text" id="transform" mode="w" >
 import re
@@ -3128,7 +3192,6 @@ elif evt.summary.startswith('threshold of high utilization '):
 
       evt.message = evt.summary
       break
-
 </property>
 </object>
 <!-- ('', 'zport', 'dmd', 'Events', 'Perf', 'TrangoSubscriberUnit') -->
@@ -3452,6 +3515,48 @@ snmp trap suLinkUp
 </property>
 <property visible="True" type="int" id="zEventSeverity" >
 0
+</property>
+</object>
+</tomanycont>
+</object>
+<!-- ('', 'zport', 'dmd', 'Mibs', 'mibs', 'TRANGOM900S-FIX-MIB') -->
+<object id='/zport/dmd/Mibs/mibs/TRANGOM900S-FIX-MIB' module='Products.ZenModel.MibModule' class='MibModule'>
+<property id='zendoc' type='string'>
+Custom Zenoss Trango Fix MIB - adds support for some suLinkUp and suLinkDown traps coming from the wrong OID
+</property>
+<property type="string" id="contact" mode="w" >
+Michael Ducharme
+</property>
+<property type="string" id="description" mode="w" >
+Custom Zenoss Trango Fix MIB - adds support for some suLinkUp and suLinkDown traps coming from the wrong OID
+</property>
+<tomanycont id='notifications'>
+<object id='suLinkDown' module='Products.ZenModel.MibNotification' class='MibNotification'>
+<property id='zendoc' type='string'>
+Alternative undocumented trap OID used to report that a Subscriber Unit has disconnected from the Access Point
+</property>
+<property type="string" id="nodetype" mode="w" >
+notification
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.4.1.5454.1.30.8
+</property>
+<property type="string" id="description" mode="w" >
+Alternative undocumented trap OID used to report that a Subscriber Unit has disconnected from the Access Point
+</property>
+</object>
+<object id='suLinkUp' module='Products.ZenModel.MibNotification' class='MibNotification'>
+<property id='zendoc' type='string'>
+Alternative undocumented trap OID used to report that a Subscriber Unit has connected to the Access Point
+</property>
+<property type="string" id="nodetype" mode="w" >
+notification
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.4.1.5454.1.30.7
+</property>
+<property type="string" id="description" mode="w" >
+Alternative undocumented trap OID used to report that a Subscriber Unit has connected to the Access Point
 </property>
 </object>
 </tomanycont>
