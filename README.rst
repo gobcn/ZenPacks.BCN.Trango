@@ -178,6 +178,11 @@ Alphabetical sort is occuring, leading to wrong sorting. Clicking on the column
 header for SUID after opening the list causes it to sort correctly and can be
 used as a workaround until the cause of this issue is determined.
 
+Acknowledgements
+----------------
+
+Special thanks to Jane Curry.
+
 Screenshots
 -----------
 * |Access Point Monitoring and Ethernet Graph|
