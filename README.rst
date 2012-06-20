@@ -103,17 +103,17 @@ Subscriber Unit Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 The plugin adds a "Trango Subscriber Units" component type under Components for devices in the M900S-AP class. The following fields are provided:
 
- * Events - Shows active events for the SU
- * SUID - An integer containing the SUID number of the SU
- * Remarks - A string to describe the SU - set on the SU manually
- * SU Management IP - IP address for the SU's management interface
- * SU Device ID - MAC address for the SU
- * CIR up/down - Committed Information Rate Up/Down in kbit/sec
- * MIR up/down - Maximum Information Rate Up/Down in kbit/sec
- * Distance - Estimated distance in miles, calculated by AP
- * Status - Custom status field for Up/Down status of SU
- * Monitored - true/false to enable/disable monitoring
- * Locking - component locking settings
+* Events - Shows active events for the SU
+* SUID - An integer containing the SUID number of the SU
+* Remarks - A string to describe the SU - set on the SU manually
+* SU Management IP - IP address for the SU's management interface
+* SU Device ID - MAC address for the SU
+* CIR up/down - Committed Information Rate Up/Down in kbit/sec
+* MIR up/down - Maximum Information Rate Up/Down in kbit/sec
+* Distance - Estimated distance in miles, calculated by AP
+* Status - Custom status field for Up/Down status of SU
+* Monitored - true/false to enable/disable monitoring
+* Locking - component locking settings
 
 The following graphs are provided for the Subscriber Units:
 
@@ -180,10 +180,10 @@ used as a workaround until the cause of this issue is determined.
 
 Screenshots
 -----------
-|Access Point Monitoring and Ethernet Graph|
-|Access Point Radio Graphs|
-|Subscriber Unit Monitoring|
-|Subscriber Unit Graphs|
+* |Access Point Monitoring and Ethernet Graph|
+* |Access Point Radio Graphs|
+* |Subscriber Unit Monitoring|
+* |Subscriber Unit Graphs|
 
 
 .. _Zenoss: http://www.zenoss.com/
