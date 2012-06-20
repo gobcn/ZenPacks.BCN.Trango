@@ -38,7 +38,7 @@ If you wish to further develop and possibly contribute back you should clone
 the git repository, then install the ZenPack in developer mode using the
 following commands::
 
-    git clone git://github.com/zenoss/ZenPacks.BCN.Trango.git
+    git clone git://github.com/mjducharme/ZenPacks.BCN.Trango.git
     zenpack --link --install ZenPacks.BCN.Trango
     zenoss restart
 
@@ -103,17 +103,17 @@ Subscriber Unit Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 The plugin adds a "Trango Subscriber Units" component type under Components for devices in the M900S-AP class. The following fields are provided:
 
-  * Events - Shows active events for the SU
-  * SUID - An integer containing the SUID number of the SU
-  * Remarks - A string to describe the SU - set on the SU manually
-  * SU Management IP - IP address for the SU's management interface
-  * SU Device ID - MAC address for the SU
-  * CIR up/down - Committed Information Rate Up/Down in kbit/sec
-  * MIR up/down - Maximum Information Rate Up/Down in kbit/sec
-  * Distance - Estimated distance in miles, calculated by AP
-  * Status - Custom status field for Up/Down status of SU
-  * Monitored - true/false to enable/disable monitoring
-  * Locking - component locking settings
+ * Events - Shows active events for the SU
+ * SUID - An integer containing the SUID number of the SU
+ * Remarks - A string to describe the SU - set on the SU manually
+ * SU Management IP - IP address for the SU's management interface
+ * SU Device ID - MAC address for the SU
+ * CIR up/down - Committed Information Rate Up/Down in kbit/sec
+ * MIR up/down - Maximum Information Rate Up/Down in kbit/sec
+ * Distance - Estimated distance in miles, calculated by AP
+ * Status - Custom status field for Up/Down status of SU
+ * Monitored - true/false to enable/disable monitoring
+ * Locking - component locking settings
 
 The following graphs are provided for the Subscriber Units:
 
@@ -187,9 +187,9 @@ Screenshots
 
 
 .. _Zenoss: http://www.zenoss.com/
-.. _Latest Package for Python 2.6: https://github.com/downloads/zenoss/ZenPacks.BCN.Trango/ZenPacks.BCN.Trango-1.5-py2.6.egg
+.. _Latest Package for Python 2.6: https://github.com/downloads/mjducharme/ZenPacks.BCN.Trango/ZenPacks.BCN.Trango-1.47-py2.6.egg
 
-.. |Access Point Monitoring and Ethernet Graph| image:: https://github.com/zenoss/ZenPacks.BCN.Trango/tree/master/docs/apmonitoring.png
-.. |Access Point Radio Graphs| image:: https://github.com/zenoss/ZenPacks.BCN.Trango/tree/master/docs/aprfinterface.png
-.. |Subscriber Unit Monitoring| image:: https://github.com/zenoss/ZenPacks.BCN.Trango/tree/master/docs/sumonitoring.png
-.. |Subscriber Unit Graphs| image:: https://github.com/zenoss/ZenPacks.BCN.Trango/tree/master/docs/sugraphs.png
+.. |Access Point Monitoring and Ethernet Graph| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/blob/master/docs/apmonitoring.png
+.. |Access Point Radio Graphs| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/blob/master/docs/aprfinterface.png
+.. |Subscriber Unit Monitoring| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/blob/master/docs/sumonitoring.png
+.. |Subscriber Unit Graphs| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/blob/master/docs/sugraphs.png
