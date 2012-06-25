@@ -121,6 +121,8 @@ ZC.TrangoSubscriberUnitPanel = Ext.extend(ZC.ComponentGridPanel, {
                                return suD + " mile";
 			     } else if (suD==0) {
                                return "< 1 mile";
+                             } else if (suD==-1) {
+                               return "Unavailable";
                              } else {
                                return suD + " miles";
                              }

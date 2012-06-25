@@ -32,7 +32,7 @@ class TrangoAccessPointDevice(SnmpPlugin):
         """collect snmp information from this device"""
         log.info('processing %s for device %s', self.name(), device.id)
         getdata, tabledata = results
-        
+
         log.debug( "Get Data= %s", getdata )
         log.debug( "Table Data= %s", tabledata )
         try:

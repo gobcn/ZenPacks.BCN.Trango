@@ -86,5 +86,11 @@ class TrangoSubscriberUnit(DeviceComponent, ManagedEntity):
         if REQUEST is not None:
             REQUEST['RESPONSE'].redirect(url)
 
+    def getSUVolatileData(self):
+        """Return the volatile data on existing SUs for modeler use
+        """
+        #class = self.productClass()
+        #f pclass: return pclass.name
+        return "here is the volatile data"
 
 

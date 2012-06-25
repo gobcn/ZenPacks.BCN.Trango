@@ -1,6 +1,7 @@
 from Products.ZenModel.Device import Device
 from Products.ZenRelations.RelSchema import ToManyCont, ToOne
-
+from copy import deepcopy
+from AccessControl import Permissions
 
 class TrangoAccessPointDevice(Device):
     """
@@ -43,3 +44,19 @@ class TrangoAccessPointDevice(Device):
             ),
         ),
     )
+
+    factory_type_information = deepcopy(Device.factory_type_information)
+    factory_type_information[0]['actions'] += (
+            { 'id' : 'trangoAccessPointDevice'
+            , 'name' : 'Details'
+            , 'action' : 'TrangoAccessPointDetails'
+            , 'permissions' : ( Permissions.view,) },
+            )
+
+    def getSUVolatileData(self):
+        """Return the volatile data on existing SUs for modeler use
+        """
+        #class = self.productClass()
+        #f pclass: return pclass.name
+        return "here is the volatile data"
+

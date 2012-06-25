@@ -19,4 +19,11 @@
         permission="zope2.Public"
         />
 
+    <page
+        name="TrangoAccessPointDetails"
+        for="..TrangoAccessPointDevice.TrangoAccessPointDevice"
+        template="templates/TrangoAccessPointDetails.pt"
+        permission="zenoss.View"
+        />
+
 </configure>

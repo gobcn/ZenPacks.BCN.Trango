@@ -1,0 +1,46 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<form method="post"
+    name="TrangoAccessPointDetails" tal:attributes="action string:${here/absolute_url_path}/${template/id}">
+
+<tal:block metal:define-macro="TrangoAccessPointDetails" tal:define="tabletitle string:Trango Access Point Details">
+
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+<tal:block metal:fill-slot="zentablecontents">
+
+<!-- BEGIN TrangoDevice TABLE CONTENTS -->
+    <tr>
+      <td class="tableheader" align=left>Base ID</td>
+      <td class="tablevalues" tal:content=here/BaseID> </td>
+      <td class="tableheader" align=left>Active Channel</td>
+      <td class="tablevalues" tal:content=here/ActiveChannel> </td>
+      <td class="tableheader" align=left>Antenna</td>
+      <td class="tablevalues" tal:content=here/Antenna> </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align=left>Channel 1 Frequency</td>
+      <td class="tablevalues" tal:content=here/Chan1Freq> </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align=left>Channel 2 Frequency</td>
+      <td class="tablevalues" tal:content=here/Chan2Freq> </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align=left>Channel 3 Frequency</td>
+      <td class="tablevalues" tal:content=here/Chan3Freq> </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align=left>Channel 4 Frequency</td>
+      <td class="tablevalues" tal:content=here/Chan4Freq> </td>
+    </tr>
+<!-- END TrangoDevice TABLE CONTENTS -->
+</tal:block>
+</tal:block>
+</tal:block>
+</form>
+
+</tal:block>
+</tal:block>
+              
+

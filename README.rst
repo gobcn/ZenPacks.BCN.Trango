@@ -194,7 +194,7 @@ Screenshots
 .. _Zenoss: http://www.zenoss.com/
 .. _Latest Package for Python 2.6: https://github.com/downloads/mjducharme/ZenPacks.BCN.Trango/ZenPacks.BCN.Trango-1.47-py2.6.egg
 
-.. |Access Point Monitoring and Ethernet Graph| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/blob/master/docs/apmonitoring.png
-.. |Access Point Radio Graphs| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/blob/master/docs/aprfinterface.png
-.. |Subscriber Unit Monitoring| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/blob/master/docs/sumonitoring.png
-.. |Subscriber Unit Graphs| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/blob/master/docs/sugraphs.png
+.. |Access Point Monitoring and Ethernet Graph| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/raw/master/docs/apmonitoring.png
+.. |Access Point Radio Graphs| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/raw/master/docs/aprfinterface.png
+.. |Subscriber Unit Monitoring| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/raw/master/docs/sumonitoring.png
+.. |Subscriber Unit Graphs| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/raw/master/docs/sugraphs.png
