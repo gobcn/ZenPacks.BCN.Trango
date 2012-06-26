@@ -93,7 +93,7 @@ class TrangoSubscriberUnit(SnmpPlugin):
                       om.suDistance = volatiledata[om.suID]['suDistance']
 		   else:
 		      log.debug( "Subscriber Unit %s has never been online during a modeling cycle - setting Remarks, IP and Distance to Unavailable" % om.suID)
-		      om.suRemarks = "Remarks Unavailable (SU was offline during remodel)"
+		      om.suRemarks = "Remarks Unavailable (SU has never been online during a remodel)"
 		      om.suIPAddr = "Unavailable"
                       om.suDistance = -1
             except AttributeError, errorInfo:

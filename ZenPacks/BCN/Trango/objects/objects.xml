@@ -2710,7 +2710,7 @@ False
 %5.2lf%s
 </property>
 <property type="string" id="legend" mode="w" >
-RF Send - Retry Maxed out at AP
+RF Send - Retry Maxed Out at AP
 </property>
 <property type="long" id="limit" mode="w" >
 -1
@@ -2739,7 +2739,7 @@ False
 %5.2lf%s
 </property>
 <property type="string" id="legend" mode="w" >
-RF Send - Retry maxed Out at SU
+RF Send - Retry Maxed Out at SU
 </property>
 <property type="long" id="limit" mode="w" >
 -1
