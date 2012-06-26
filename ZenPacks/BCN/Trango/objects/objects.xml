@@ -3351,6 +3351,7 @@ if evt.summary.startswith('threshold of su association status '):
                  evt.message = evt.summary
               else:
                  evt._action = 'drop'
+              break
 elif evt.summary.startswith('threshold of signal strength '):
     suinfo = ""
     if device:
@@ -3363,20 +3364,20 @@ elif evt.summary.startswith('threshold of signal strength '):
               m = re.search("threshold of [^:]+: current value ([-?\d\.]+)", evt.message)
               if not m: continue
               currentvalue = float(m.groups()[0])
-              if su.suRemarks.startswith('vip-'):
-                 evt.summary = "subscriber unit " + suinfo + " has BAD SIGNAL STRENGTH (" + str(currentvalue) + "dB)"
-                 evt.message = evt.summary
 
               #only create the event if it is a VIP customer so device does not turn yellow from home customer issue
-              if su.suRemarks.startswith('vip-'):
+              #also ignore signal -120dB because a subscriber down event will be generated
+              if (su.suRemarks.startswith('vip-') and (currentvalue &gt; -120.0)):
                  if evt.severity &gt; 0:
                      evt.summary = "subscriber unit " + suinfo + " has BAD SIGNAL STRENGTH (" + str(currentvalue) + "dB)"
                      evt.severity=4
                  else:
                      evt.summary = "subscriber unit " + suinfo + " signal strength has returned to normal (" + str(currentvalue) + "dB)"
                  evt.message = evt.summary
+                 evt.eventKey = "signal strength"
               else:
                  evt._action = 'drop'
+              break
 </property>
 <property type="text" id="transform" mode="w" >
 import re
@@ -3410,6 +3411,7 @@ if evt.summary.startswith('threshold of su association status '):
                  evt.message = evt.summary
               else:
                  evt._action = 'drop'
+              break
 elif evt.summary.startswith('threshold of signal strength '):
     suinfo = ""
     if device:
@@ -3422,20 +3424,20 @@ elif evt.summary.startswith('threshold of signal strength '):
               m = re.search("threshold of [^:]+: current value ([-?\d\.]+)", evt.message)
               if not m: continue
               currentvalue = float(m.groups()[0])
-              if su.suRemarks.startswith('vip-'):
-                 evt.summary = "subscriber unit " + suinfo + " has BAD SIGNAL STRENGTH (" + str(currentvalue) + "dB)"
-                 evt.message = evt.summary
 
               #only create the event if it is a VIP customer so device does not turn yellow from home customer issue
-              if su.suRemarks.startswith('vip-'):
+              #also ignore signal -120dB because a subscriber down event will be generated
+              if (su.suRemarks.startswith('vip-') and (currentvalue &gt; -120.0)):
                  if evt.severity &gt; 0:
                      evt.summary = "subscriber unit " + suinfo + " has BAD SIGNAL STRENGTH (" + str(currentvalue) + "dB)"
                      evt.severity=4
                  else:
                      evt.summary = "subscriber unit " + suinfo + " signal strength has returned to normal (" + str(currentvalue) + "dB)"
                  evt.message = evt.summary
+                 evt.eventKey = "signal strength"
               else:
                  evt._action = 'drop'
+              break
 </property>
 <tomanycont id='instances'>
 <object id='suLinkDown' module='Products.ZenEvents.EventClassInst' class='EventClassInst'>
@@ -3464,6 +3466,7 @@ if device:
              evt.severity=4
           else:
              evt._action = 'drop'
+          break
 </property>
 <property type="string" id="eventClassKey" mode="w" >
 suLinkDown
@@ -3500,6 +3503,7 @@ if device:
              evt.message = evt.summary
           else:
              evt._action = 'drop'
+          break
 </property>
 <property type="string" id="eventClassKey" mode="w" >
 suLinkUp

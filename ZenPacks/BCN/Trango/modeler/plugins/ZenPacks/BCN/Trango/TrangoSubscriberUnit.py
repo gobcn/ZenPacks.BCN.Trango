@@ -21,8 +21,6 @@ class TrangoSubscriberUnit(SnmpPlugin):
     modname = "ZenPacks.BCN.Trango.TrangoSubscriberUnit"
     deviceProperties = SnmpPlugin.deviceProperties + ('getSUVolatileData',)
     
-# snmpGetTableMaps gets tabular data
-
     snmpGetTableMaps = (
 
 
@@ -54,16 +52,16 @@ class TrangoSubscriberUnit(SnmpPlugin):
         """collect snmp information from this device"""
         log.info('processing %s for device %s', self.name(), device.id)
 
-        log.info("All results = %s", str(results))
-        log.info("Volatile data = %s", getattr(device,'getSUVolatileData', None))
         getdata, tabledata = results
-        
+	volatiledata = getattr(device,'getSUVolatileData', None)
+	        
         log.debug( "Get Data= %s", getdata )
         log.debug( "Table Data= %s", tabledata )
+	log.debug( "Volatile Data= %s", volatiledata )
 
         suInfoTable = tabledata.get("suInfoTable")
 
-# If no data returned then simply return
+	# If no data returned then simply return
         if ( not suInfoTable ): 
                 log.warn( 'No SNMP response from %s for the %s plugin', device.id, self.name() )
                 return
@@ -84,10 +82,20 @@ class TrangoSubscriberUnit(SnmpPlugin):
                    else:
                         log.debug("The MAC address for interface %s is invalid (%s)" \
                          " -- ignoring", om.id, om.suMAC)
+		# if the su is down we need to do extra things
 		if om.suAssociation != 1:
-		   om.suRemarks = "Remarks Unavailable (SU was offline during remodel)"
-		   om.suIPAddr = "Unavailable"
-                   om.suDistance = -1
+		   # if we successfully modeled the SU before, use the
+		   # remarks, IP and Distance from the previous model
+		   if om.suID in volatiledata:
+		      log.debug( "Subscriber Unit %s offline during modeling, using old values from DMD" % om.suID)
+                      om.suRemarks = volatiledata[om.suID]['suRemarks']
+                      om.suIPAddr = volatiledata[om.suID]['suIPAddr']
+                      om.suDistance = volatiledata[om.suID]['suDistance']
+		   else:
+		      log.debug( "Subscriber Unit %s has never been online during a modeling cycle - setting Remarks, IP and Distance to Unavailable" % om.suID)
+		      om.suRemarks = "Remarks Unavailable (SU was offline during remodel)"
+		      om.suIPAddr = "Unavailable"
+                      om.suDistance = -1
             except AttributeError, errorInfo:
                 log.warn( " Attribute error in TrangoSubscriberUnit modeler plugin %s", errorInfo)
                 continue

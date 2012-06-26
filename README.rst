@@ -71,6 +71,9 @@ Installing the ZenPack will add the following objects to your Zenoss system.
 
 Access Point Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~~
+A tab called "Access Point Details" is added to APs to display their BaseID,
+Antenna, Channel and Frequency Table.
+
 As the Trango Access Points lack support for IEEE interface tables, this script includes an interface modeler script that maps the primary Ethernet and Radio interfaces into the existing os.interfaces for the device in Zenoss.
 
 The following graphs are included:
@@ -165,13 +168,16 @@ map these two trap OIDs to the existing suLinkup and suLinkDown transforms.
 
 Known Issues
 ------------
-If an Access Point is remodeled while a subscriber is offline, their Remarks
-and IP address will disappear. This is due to the fact that the AP no longer
-provides these values. The possibility is being investigated to pull the
-existing values for Remarks and IP address into the modeler script such that,
-if the subscriber unit is offline, the old Remarks and IP address stored in
-Zenoss for the SU will be used instead of those pulled by the modeler script.
-The distance also displays as "< 1 mile" for offline SU's.
+Trango Access Points do not store the Remarks, IP address and SU Distance
+in memory when the subscriber is disconnected. This led to an issue where 
+a previously modeled subscriber's Remarks, IP address and Distance would
+disappear if the subscriber happened to be offline during a modeling cycle. The
+Remarks, IP address and distance would only reappear the next time a modeling
+cycle coincided with the subscriber being online. To work around this issue, 
+this ZenPack is designed to read the prevous data from the DMD for customers 
+who are offline during a model but previously modeled successfully. An
+unavailable message is substituted for customers who have never been modeled
+while they were online. 
 
 Automatic sorting of the list of Subscriber Units by SUID number is not working.
 Alphabetical sort is occuring, leading to wrong sorting. Clicking on the column
@@ -190,9 +196,13 @@ Screenshots
 * |Subscriber Unit Monitoring|
 * |Subscriber Unit Graphs|
 
+Version History
+---------------
+* 1.50 - June 26, 2012 - Multiple bug fixes/enhancements: https://github.com/mjducharme/ZenPacks.BCN.Trango/issues?milestone=2&state=closed
+* 1.47 - June 20, 2012 - Initial Release
 
 .. _Zenoss: http://www.zenoss.com/
-.. _Latest Package for Python 2.6: https://github.com/downloads/mjducharme/ZenPacks.BCN.Trango/ZenPacks.BCN.Trango-1.47-py2.6.egg
+.. _Latest Package for Python 2.6: https://github.com/downloads/mjducharme/ZenPacks.BCN.Trango/ZenPacks.BCN.Trango-1.50-py2.6.egg
 
 .. |Access Point Monitoring and Ethernet Graph| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/raw/master/docs/apmonitoring.png
 .. |Access Point Radio Graphs| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/raw/master/docs/aprfinterface.png

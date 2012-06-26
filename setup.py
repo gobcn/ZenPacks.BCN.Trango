@@ -3,7 +3,7 @@
 # or saved.  Do not modify them directly here.
 # NB: PACKAGES is deprecated
 NAME = "ZenPacks.BCN.Trango"
-VERSION = "1.47"
+VERSION = "1.5"
 AUTHOR = "Michael Ducharme"
 LICENSE = ""
 NAMESPACE_PACKAGES = ['ZenPacks', 'ZenPacks.BCN']

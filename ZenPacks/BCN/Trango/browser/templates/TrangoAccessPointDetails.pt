@@ -11,10 +11,14 @@
 
 <!-- BEGIN TrangoDevice TABLE CONTENTS -->
     <tr>
-      <td class="tableheader" align=left>Base ID</td>
+      <td class="tableheader" align=left width=150>Base ID</td>
       <td class="tablevalues" tal:content=here/BaseID> </td>
+    </tr>
+    <tr>
       <td class="tableheader" align=left>Active Channel</td>
       <td class="tablevalues" tal:content=here/ActiveChannel> </td>
+    </tr>
+    <tr>
       <td class="tableheader" align=left>Antenna</td>
       <td class="tablevalues" tal:content=here/Antenna> </td>
     </tr>

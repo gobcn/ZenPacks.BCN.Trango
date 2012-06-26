@@ -48,7 +48,7 @@ class TrangoAccessPointDevice(Device):
     factory_type_information = deepcopy(Device.factory_type_information)
     factory_type_information[0]['actions'] += (
             { 'id' : 'trangoAccessPointDevice'
-            , 'name' : 'Details'
+            , 'name' : 'Access Point Details'
             , 'action' : 'TrangoAccessPointDetails'
             , 'permissions' : ( Permissions.view,) },
             )
@@ -56,7 +56,9 @@ class TrangoAccessPointDevice(Device):
     def getSUVolatileData(self):
         """Return the volatile data on existing SUs for modeler use
         """
-        #class = self.productClass()
-        #f pclass: return pclass.name
-        return "here is the volatile data"
+        myvolatiledata = {}
+        for su in self.trangoSubscriberUnit():
+           suinfo = { 'suRemarks' : su.suRemarks, 'suIPAddr' : su.suIPAddr, 'suDistance' : su.suDistance }
+	   myvolatiledata[su.suID] = suinfo
+        return myvolatiledata
 
