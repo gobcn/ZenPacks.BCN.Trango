@@ -27,10 +27,6 @@ ZC.TrangoSubscriberUnitPanel = Ext.extend(ZC.ComponentGridPanel, {
         config = Ext.applyIf(config||{}, {
             autoExpandColumn: 'suRemarks',
             componentType: 'TrangoSubscriberUnit',
-            sortInfo: {
-                field: 'suID',
-                direction: 'ASC'
-            },
             fields: [
                 {name: 'uid'},
                 {name: 'name'},
@@ -39,8 +35,10 @@ ZC.TrangoSubscriberUnitPanel = Ext.extend(ZC.ComponentGridPanel, {
                 {name: 'monitor'},
                 {name: 'monitored'},
                 {name: 'locking'},
+		{name: 'status'},
                 {name: 'snmpindex'},
-                {name: 'suID'},
+		{name: 'distance'},
+                {name: 'suID', type: 'int', sortType: 'asInt'},
                 {name: 'suRemarks'},
                 {name: 'suIPAddr'},
                 {name: 'suMAC'},
@@ -51,12 +49,16 @@ ZC.TrangoSubscriberUnitPanel = Ext.extend(ZC.ComponentGridPanel, {
                 {name: 'suDistance'},
                 {name: 'suAssociation'}
             ],
+	    /*sortInfo: {
+		field: 'suID',
+		direction: 'ASC'
+	    },*/
             columns: [{
                 id: 'severity',
                 dataIndex: 'severity',
                 header: _t('Events'),
                 renderer: Zenoss.render.severity,
-                sortable: true,
+                /*sortable: true,*/
                 width: 50
  /*           },{ 
                 id: 'name',
@@ -74,46 +76,46 @@ ZC.TrangoSubscriberUnitPanel = Ext.extend(ZC.ComponentGridPanel, {
                 id: 'suRemarks',
                 dataIndex: 'suRemarks',
                 header: _t('Remarks'),
-                sortable: true,
+                /*sortable: true,*/
                 width: 200
             },{
                 id: 'suIPAddr',
                 dataIndex: 'suIPAddr',
                 header: _t('SU Management IP'),
-                sortable: true,
+                /*sortable: true,*/
                 width: 120
             },{
                 id: 'suMAC',
                 dataIndex: 'suMAC',
                 header: _t('SU Device ID'),
-                sortable: true,
+                /*sortable: true,*/
                 width: 120
             },{
                 id: 'suUpLinkCIR',
                 dataIndex: 'suUpLinkCIR',
                 header: _t('CIR up'),
-                sortable: true,
+                /*sortable: true,*/
                 width: 50
             },{
                 id: 'suDownLinkCIR',
                 dataIndex: 'suDownLinkCIR',
                 header: _t('CIR dn'),
-                sortable: true,
+                /*sortable: true,*/
                 width: 50
             },{
                 id: 'suUpLinkMIR',
                 dataIndex: 'suUpLinkMIR',
                 header: _t('MIR up'),
-                sortable: true,
+                /*sortable: true,*/
                 width: 50
             },{
                 id: 'suDownLinkMIR',
                 dataIndex: 'suDownLinkMIR',
                 header: _t('MIR dn'),
-                sortable: true,
+                /*sortable: true,*/
                 width: 50
             },{
-                id: 'suDistance',
+/*                id: 'suDistance',
                 dataIndex: 'suDistance',
                 header: _t('SU Distance'),
 		renderer: function(suD) {
@@ -129,20 +131,19 @@ ZC.TrangoSubscriberUnitPanel = Ext.extend(ZC.ComponentGridPanel, {
                 },
                 sortable: true,
                 width: 70
+            },{ */
+                id: 'distance',
+                dataIndex: 'distance',
+                header: _t('SU Distance'),
+                /*sortable: true,*/
+                width: 70
             },{
-                id: 'suAssociation',
-                dataIndex: 'suAssociation',
+                id: 'status',
+                dataIndex: 'status',
                 header: _t('Status'),
-                renderer: function(suA) {
-                             if (suA==1) {
-                               return Zenoss.render.pingStatus('up');
-                             } else {
-                               return Zenoss.render.pingStatus('down');
-                             }
-                },
-                width: 80,
-                sortable: true
-            },{
+                renderer: Zenoss.render.pingStatus,
+                width: 60
+	    },{
                 id: 'monitored',
                 dataIndex: 'monitored',
                 header: _t('Monitored'),

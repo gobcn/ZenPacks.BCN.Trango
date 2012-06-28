@@ -26,13 +26,22 @@ else:
 
 
 class ITrangoSubscriberUnitInfo(IComponentInfo):
-    suID = SingleLineText(title=_t(u"SUID"))
+    
+    suID = schema.Int(title=_t(u"SUID"))
     suMAC = SingleLineText(title=_t(u"SU Device ID"))
+    polling = SingleLineText(title=_t(u"SU Polling Type"))
+    groupid = SingleLineText(title=_t(u"Group ID"))
     suIPAddr = SingleLineText(title=_t(u"SU Management IP"))
+    suSubnetMask = SingleLineText(title=_t(u"SU Subnet Mask"))
+    suGateWay = SingleLineText(title=_t(u"SU Default Gateway"))
     suRemarks = SingleLineText(title=_t(u"Remarks"))
-    suDistance = schema.Int(title=_t(u"SU Distance (miles)"))
-    suDownLinkCIR = schema.Int(title=_t(u"CIR dn"))
-    suUpLinkCIR = schema.Int(title=_t(u"CIR up"))
-    suDownLinkMIR = schema.Int(title=_t(u"MIR dn"))
-    suUpLinkMIR = SingleLineText(title=_t(u"MIR up"))
-
+    suHWVer = SingleLineText(title=_t(u"SU Hardware Version"))
+    suFWVer = SingleLineText(title=_t(u"SU Firmware Version"))
+    suFWChecksum = SingleLineText(title=_t(u"SU Firmware Checksum"))
+    suFPGAVer = SingleLineText(title=_t(u"SU FPGA Version"))
+    suFPGAChecksum = SingleLineText(title=_t(u"SU FPGA Checksum"))
+    distance = SingleLineText(title=_t(u"SU Distance"))
+    suDownLinkCIR = schema.Int(title=_t(u"CIR dn (Kbps)"))
+    suUpLinkCIR = schema.Int(title=_t(u"CIR up (Kbps)"))
+    suDownLinkMIR = schema.Int(title=_t(u"MIR dn (Kbps)"))
+    suUpLinkMIR = SingleLineText(title=_t(u"MIR up (Kbps)"))

@@ -14,6 +14,11 @@ class TrangoAccessPointDevice(Device):
     #   (BaseID is a standard property on a device)
     # also activechannel and channel table
 
+    apversionHW = ''
+    apversionFW = ''
+    apversionFWChecksum = ''
+    apversionFPGA = ''
+    apversionFPGAChecksum = ''
     BaseID = ''
     ActiveChannel = 0
     Antenna = ''
@@ -23,6 +28,11 @@ class TrangoAccessPointDevice(Device):
     Chan4Freq = 0
 
     _properties = Device._properties + (
+        {'id':'apversionHW', 'type':'string', 'mode':''},
+        {'id':'apversionFW', 'type':'string', 'mode':''},
+        {'id':'apversionFWChecksum', 'type':'string', 'mode':''},
+        {'id':'apversionFPGA', 'type':'string', 'mode':''},
+        {'id':'apversionFPGAChecksum', 'type':'string', 'mode':''},
         {'id':'BaseID', 'type':'string', 'mode':''},
         {'id':'ActiveChannel', 'type':'int', 'mode':''},
         {'id':'Antenna', 'type':'string', 'mode':''},

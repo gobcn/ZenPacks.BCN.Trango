@@ -18,6 +18,11 @@ class TrangoAccessPointDevice(SnmpPlugin):
     maptype = "TrangoAccessPointDevice"
 
     snmpGetMap = GetMap({
+	'.1.3.6.1.4.1.5454.1.30.1.1.1' :  'apversionHW',
+        '.1.3.6.1.4.1.5454.1.30.1.1.2' :  'apversionFW',
+        '.1.3.6.1.4.1.5454.1.30.1.1.3' :  'apversionFWChecksum',
+        '.1.3.6.1.4.1.5454.1.30.1.1.4' :  'apversionFPGA',
+        '.1.3.6.1.4.1.5454.1.30.1.1.5' :  'apversionFPGAChecksum',
         '.1.3.6.1.4.1.5454.1.30.1.3.0' :  'BaseID',
         '.1.3.6.1.4.1.5454.1.30.2.1.0' :  'ActiveChannel',
 	'.1.3.6.1.4.1.5454.1.30.2.2.0' :  'Antenna',
@@ -37,6 +42,13 @@ class TrangoAccessPointDevice(SnmpPlugin):
         log.debug( "Table Data= %s", tabledata )
         try:
             om = self.objectMap(getdata)
+            om.setOSProductKey = MultiArgs(om.apversionFW, "Trango Systems, Inc.")
+            if om.Antenna == "v":
+               om.Antenna = "Vertical"
+            elif om.Antenna == "h":
+               om.Antenna = "Horizontal"
+            elif om.Antenna == "e":
+               om.Antenna = "External"
             return om
         except:
             log.warn( " Error in getting data for TrangoAccessPointDevice modeler plugin" )

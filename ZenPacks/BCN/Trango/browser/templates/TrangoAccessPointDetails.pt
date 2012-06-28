@@ -11,7 +11,27 @@
 
 <!-- BEGIN TrangoDevice TABLE CONTENTS -->
     <tr>
-      <td class="tableheader" align=left width=150>Base ID</td>
+      <td class="tableheader" align=left width=150>AP Hardware Version</td>
+      <td class="tablevalues" tal:content=here/apversionHW> </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align=left>AP Firmware Version</td>
+      <td class="tablevalues" tal:content=here/apversionFW> </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align=left>AP Firmware Checksum</td>
+      <td class="tablevalues" tal:content=here/apversionFWChecksum> </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align=left>AP FPGA Version</td>
+      <td class="tablevalues" tal:content=here/apversionFPGA> </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align=left>AP FPGA Checksum</td>
+      <td class="tablevalues" tal:content=here/apversionFPGAChecksum> </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align=left>Base ID</td>
       <td class="tablevalues" tal:content=here/BaseID> </td>
     </tr>
     <tr>
@@ -23,19 +43,19 @@
       <td class="tablevalues" tal:content=here/Antenna> </td>
     </tr>
     <tr>
-      <td class="tableheader" align=left>Channel 1 Frequency</td>
+      <td class="tableheader" align=left>Channel 1 Frequency (Hz)</td>
       <td class="tablevalues" tal:content=here/Chan1Freq> </td>
     </tr>
     <tr>
-      <td class="tableheader" align=left>Channel 2 Frequency</td>
+      <td class="tableheader" align=left>Channel 2 Frequency (Hz)</td>
       <td class="tablevalues" tal:content=here/Chan2Freq> </td>
     </tr>
     <tr>
-      <td class="tableheader" align=left>Channel 3 Frequency</td>
+      <td class="tableheader" align=left>Channel 3 Frequency (Hz)</td>
       <td class="tablevalues" tal:content=here/Chan3Freq> </td>
     </tr>
     <tr>
-      <td class="tableheader" align=left>Channel 4 Frequency</td>
+      <td class="tableheader" align=left>Channel 4 Frequency (Hz)</td>
       <td class="tablevalues" tal:content=here/Chan4Freq> </td>
     </tr>
 <!-- END TrangoDevice TABLE CONTENTS -->

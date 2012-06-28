@@ -74,6 +74,41 @@ class TrangoSubscriberUnit(DeviceComponent, ManagedEntity):
     def device(self):
         return self.trangoAccessPointDevice()
 
+    def getStatus(self):
+        return self.suAssociation
+
+    def convertStatus(self, statusCode):
+        if statusCode == 1:
+           return "Up"
+        else:
+           return "Down"
+
+    def getDistance(self):
+        if self.suDistance == 1:
+           return str(self.suDistance) + " mile"
+        elif self.suDistance == 0:
+           return str(self.suDistance) + "< 1 mile"
+        elif self.suDistance == -1:
+           return "Unavailable"
+        else:
+           return str(self.suDistance) + " miles"
+
+    def getPolling(self):
+        if self.suPolling == 1:
+           return "Regular"
+        else:
+           return "Priority"
+
+    def getGroupID(self):
+        if self.suGroupID == 0:
+           return "No Group"
+        else:
+           return str(self.suGroupID)
+
+    def primarySortKey(self):
+        """Sort by suID"""
+        return self.suRemarks
+
     def manage_deleteComponent(self, REQUEST=None):
         """
         Delete trangoSubscriberUnit component

@@ -27,11 +27,38 @@ class TrangoSubscriberUnitInfo(ComponentInfo):
     snmpindex = ProxyProperty("snmpindex")
     suID = ProxyProperty("suID")
     suMAC = ProxyProperty("suMAC")
+    suPolling = ProxyProperty("suPolling")
+    suGroupID = ProxyProperty("suGroupID")
     suIPAddr = ProxyProperty("suIPAddr")
+    suSubnetMask = ProxyProperty("suSubnetMask")
+    suGateWay = ProxyProperty("suGateWay")
     suRemarks = ProxyProperty("suRemarks")
+    suHWVer = ProxyProperty("suHWVer")
+    suFWVer = ProxyProperty("suFWVer")
+    suFWChecksum = ProxyProperty("suFWChecksum")
+    suFPGAVer = ProxyProperty("suFPGAVer")
+    suFPGAChecksum = ProxyProperty("suFPGAChecksum")
+    suAssociation = ProxyProperty("suAssociation")
     suDistance = ProxyProperty("suDistance")
     suDownLinkCIR = ProxyProperty("suDownLinkCIR")
     suUpLinkCIR = ProxyProperty("suUpLinkCIR")
     suDownLinkMIR = ProxyProperty("suDownLinkMIR")
     suUpLinkMIR = ProxyProperty("suUpLinkMIR")
-    suAssociation = ProxyProperty("suAssociation")
+    distance = ProxyProperty("distance")
+    polling = ProxyProperty("polling")
+    groupid = ProxyProperty("groupid")
+
+    @property
+    def distance(self):
+        sudistance = self._object.getDistance()
+        return sudistance
+
+    @property
+    def polling(self):
+        supolling = self._object.getPolling()
+        return supolling
+
+    @property
+    def groupid(self):
+        sugroup = self._object.getGroupID()
+        return sugroup
