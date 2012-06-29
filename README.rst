@@ -38,7 +38,7 @@ If you wish to further develop and possibly contribute back you should clone
 the git repository, then install the ZenPack in developer mode using the
 following commands::
 
-    git clone git://github.com/mjducharme/ZenPacks.BCN.Trango.git
+    git clone git://github.com/gobcn/ZenPacks.BCN.Trango.git
     zenpack --link --install ZenPacks.BCN.Trango
     zenoss restart
 
@@ -199,13 +199,13 @@ Screenshots
 Version History
 ---------------
 * 1.51 - June 26, 2012 - Spelling fixes
-* 1.50 - June 26, 2012 - Multiple bug fixes/enhancements: https://github.com/mjducharme/ZenPacks.BCN.Trango/issues?milestone=2&state=closed
+* 1.50 - June 26, 2012 - Multiple bug fixes/enhancements: https://github.com/gobcn/ZenPacks.BCN.Trango/issues?milestone=2&state=closed
 * 1.47 - June 20, 2012 - Initial Release
 
 .. _Zenoss: http://www.zenoss.com/
-.. _Latest Package for Python 2.6: https://github.com/downloads/mjducharme/ZenPacks.BCN.Trango/ZenPacks.BCN.Trango-1.51-py2.6.egg
+.. _Latest Package for Python 2.6: https://github.com/downloads/gobcn/ZenPacks.BCN.Trango/ZenPacks.BCN.Trango-1.51-py2.6.egg
 
-.. |Access Point Monitoring and Ethernet Graph| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/raw/master/docs/apmonitoring.png
-.. |Access Point Radio Graphs| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/raw/master/docs/aprfinterface.png
-.. |Subscriber Unit Monitoring| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/raw/master/docs/sumonitoring.png
-.. |Subscriber Unit Graphs| image:: https://github.com/mjducharme/ZenPacks.BCN.Trango/raw/master/docs/sugraphs.png
+.. |Access Point Monitoring and Ethernet Graph| image:: https://github.com/gobcn/ZenPacks.BCN.Trango/raw/master/docs/apmonitoring.png
+.. |Access Point Radio Graphs| image:: https://github.com/gobcn/ZenPacks.BCN.Trango/raw/master/docs/aprfinterface.png
+.. |Subscriber Unit Monitoring| image:: https://github.com/gobcn/ZenPacks.BCN.Trango/raw/master/docs/sumonitoring.png
+.. |Subscriber Unit Graphs| image:: https://github.com/gobcn/ZenPacks.BCN.Trango/raw/master/docs/sugraphs.png

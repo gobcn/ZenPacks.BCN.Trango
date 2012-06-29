@@ -21,13 +21,24 @@ ZC.registerName('TrangoSubscriberUnit', _t('Trango Subscriber Unit'), _t('Trango
  * components of the type set in "componentType".
  */
 ZC.TrangoSubscriberUnitPanel = Ext.extend(ZC.ComponentGridPanel, {
+/* new for zenoss 4 Ext.define('Zenoss.component.TrangoSubscriberUnitPanel', {
+    extend: 'Zenoss.component.ComponentGridPanel', */
     subComponentGridPanel: false,
 
     constructor: function(config) {
         config = Ext.applyIf(config||{}, {
             autoExpandColumn: 'suRemarks',
             componentType: 'TrangoSubscriberUnit',
+	    /*alias:['widget.TrangoSubscriberUnitPanel'],*/
+	    enableSort: true,
+	    /* autoLoad: true, */
+	    defaultSort: { field: 'suID', direction: 'ASC'},
+	    sortInfo: {
+                field: 'suID',
+                direction: 'ASC'
+            },
             fields: [
+                {name: 'suID', type: 'int', sortType: 'asInt'},
                 {name: 'uid'},
                 {name: 'name'},
                 {name: 'severity'},
@@ -38,7 +49,6 @@ ZC.TrangoSubscriberUnitPanel = Ext.extend(ZC.ComponentGridPanel, {
 		{name: 'status'},
                 {name: 'snmpindex'},
 		{name: 'distance'},
-                {name: 'suID', type: 'int', sortType: 'asInt'},
                 {name: 'suRemarks'},
                 {name: 'suIPAddr'},
                 {name: 'suMAC'},
@@ -156,6 +166,7 @@ ZC.TrangoSubscriberUnitPanel = Ext.extend(ZC.ComponentGridPanel, {
                 renderer: Zenoss.render.locking_icons
             }]
         });
+        /* new for zenoss 4 this.callParent([config]); */
         ZC.TrangoSubscriberUnitPanel.superclass.constructor.call(this, config);
     }
 });

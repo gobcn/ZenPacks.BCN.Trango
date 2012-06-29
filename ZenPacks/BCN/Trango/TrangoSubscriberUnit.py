@@ -109,6 +109,9 @@ class TrangoSubscriberUnit(DeviceComponent, ManagedEntity):
         """Sort by suID"""
         return self.suRemarks
 
+    def getInstDescription(self):
+        return self.suRemarks
+
     def manage_deleteComponent(self, REQUEST=None):
         """
         Delete trangoSubscriberUnit component
