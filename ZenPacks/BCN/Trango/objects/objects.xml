@@ -2870,7 +2870,7 @@ True
 <tomanycont id='graphPoints'>
 <object id='RSSI at AP' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
 <property type="long" id="sequence" mode="w" >
-1
+2
 </property>
 <property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
 LINE
@@ -2898,6 +2898,9 @@ AVERAGE
 </property>
 </object>
 <object id='RSSI at SU' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+1
+</property>
 <property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
 LINE
 </property>
@@ -2921,6 +2924,14 @@ suRSSIAtSU_suRSSIAtSU
 </property>
 <property type="string" id="cFunc" mode="w" >
 AVERAGE
+</property>
+</object>
+<object id='signal strength' module='Products.ZenModel.ThresholdGraphPoint' class='ThresholdGraphPoint'>
+<property type="string" id="threshId" mode="w" >
+signal strength
+</property>
+<property type="string" id="legend" mode="w" >
+bad signal strength
 </property>
 </object>
 </tomanycont>
@@ -3445,10 +3456,12 @@ elif evt.summary.startswith('threshold of signal strength '):
 from transaction import commit
 
 evt.component = "suid" + str(getattr(evt, 'suID', ''))
+found=0
 suinfo = ""
 if device:
     for su in device.trangoSubscriberUnit():
        if su.id == evt.component:
+          found=1
           if su.suRemarks:
              suinfo = su.id + " (" + su.suRemarks + ")"
           else:
@@ -3467,6 +3480,9 @@ if device:
           else:
              evt._action = 'drop'
           break
+if found==0:
+   evt.summary="unrecognized subscriber unit " + evt.component + " is DOWN"
+   evt.message=evt.summary + "! Please remodel the device in Zenoss to facilitate proper monitoring of the subscriber unit and remove these alerts."
 </property>
 <property type="string" id="eventClassKey" mode="w" >
 suLinkDown
@@ -3483,10 +3499,12 @@ snmp trap suLinkDown
 from transaction import commit
 
 evt.component = "suid" + str(getattr(evt, 'suID', ''))
+found=0
 suinfo = ""
 if device:
     for su in device.trangoSubscriberUnit():
        if su.id == evt.component:
+          found=1
           if su.suRemarks:
              suinfo = su.id + " (" + su.suRemarks + ")"
           else:
@@ -3504,6 +3522,9 @@ if device:
           else:
              evt._action = 'drop'
           break
+if found==0:
+   evt.summary="unrecognized subscriber unit " + evt.component + " is UP"
+   evt.message=evt.summary + "! Please remodel the device in Zenoss to facilitate proper monitoring of the subscriber unit and remove these alerts."
 </property>
 <property type="string" id="eventClassKey" mode="w" >
 suLinkUp
