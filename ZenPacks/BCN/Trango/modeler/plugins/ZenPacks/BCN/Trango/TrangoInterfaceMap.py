@@ -21,16 +21,6 @@ class TrangoInterfaceMap(InterfaceMap):
     """
     Map IP network names and aliases to DMD 'interface' objects
     """
-    order = 80
-    maptype = "InterfaceMap" 
-    compname = "os"
-    relname = "interfaces"
-    modname = "Products.ZenModel.IpInterface"
-    deviceProperties = \
-                SnmpPlugin.deviceProperties + ('zInterfaceMapIgnoreNames',
-                                               'zInterfaceMapIgnoreTypes')
-    
-    # Interface related tables likely to be used in all subclasses.
 
     # gets data for Ethernet and Radio interfaces
     columns = {
@@ -64,40 +54,42 @@ class TrangoInterfaceMap(InterfaceMap):
            if not self.checkColumns(getdata, self.columns, log):
               return
            log.info( "Device uses non-standard OIDs for eth and rf interface details, creating interfaces based on the non-standard OIDs." )
-           eth0 = self.objectMap(getdata)
-           rf0 = self.objectMap(getdata)
+           eth0 = self.objectMap()
+           rf0 = self.objectMap()
            eth0.ifindex = 0
-           eth0.id = 'Ethernet'
+           eth0.id = self.prepId('Ethernet')
            eth0.description = 'Ethernet interface on AP'
            eth0.type='TrangoAccessPointEthernet'
            eth0.adminStatus = 1
            eth0.operStatus = 1
 	   eth0.speed = 3145728
            eth0.mtu = 1500
-           if not hasattr(eth0, 'setIpAddresses'):
+           if 'macaddress' in getdata:
+              eth0.macaddress = getdata['macaddress']
+           if not ('setIpAddresses' in getdata):
                eth0.setIpAddresses = []
-           if hasattr(eth0, 'ipAddress'):
-               ip = eth0.ipAddress
-           if hasattr(eth0, 'netmask'):
-               ip = ip + "/" + str(self.maskToBits(eth0.netmask.strip()))
-
-           # Ignore IP addresses with a 0.0.0.0 netmask.
-           if ip.endswith("/0"):
-               log.warn("Ignoring IP address with 0.0.0.0 netmask: %s", ip)
-           else:
-               eth0.setIpAddresses.append(ip)
+           if 'ipAddress' in getdata:
+               ip = getdata['ipAddress']
+               if 'netmask' in getdata:
+                   ip = ip + "/" + str(self.maskToBits(getdata['netmask'].strip()))
+               # Ignore IP addresses with a 0.0.0.0 netmask.
+               if ip.endswith("/0"):
+                   log.warn("Ignoring IP address with 0.0.0.0 netmask: %s", ip)
+               else:
+                   eth0.setIpAddresses.append(ip)
            rf0.ifindex = 0
-           rf0.id = 'Radio'
+           rf0.id = self.prepId('Radio')
            rf0.description = 'RF Interface on AP'
            rf0.type='TrangoAccessPointRadio'
 	   rf0.speed=3145728
            rf0.mtu=1500
-           del(rf0.macaddress)        
-           if getattr(rf0,'apsystemDefOpMode') == 0:
-              rf0.adminStatus = 1
-           else:
-              rf0.adminStatus = 2
-           rf0.operStatus = not getattr(rf0,'apsystemCurOpMode')
+	   if 'apsystemDefOpMode' in getdata:
+              if getdata['apsystemDefOpMode'] == 0:
+                 rf0.adminStatus = 1
+              else:
+                 rf0.adminStatus = 2
+           if 'apsystemCurOpMode' in getdata:
+              rf0.operStatus = not getdata['apsystemCurOpMode']
            om = self.processInt(log, device, rf0)
 	   om.type=rf0.type
            if om: rm.append(om)
