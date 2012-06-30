@@ -65,7 +65,7 @@ class TrangoInterfaceMap(InterfaceMap):
 	   eth0.speed = 3145728
            eth0.mtu = 1500
            if 'macaddress' in getdata:
-              eth0.macaddress = getdata['macaddress']
+               eth0.macaddress = getdata['macaddress']
            if not ('setIpAddresses' in getdata):
                eth0.setIpAddresses = []
            if 'ipAddress' in getdata:
@@ -89,7 +89,10 @@ class TrangoInterfaceMap(InterfaceMap):
               else:
                  rf0.adminStatus = 2
            if 'apsystemCurOpMode' in getdata:
-              rf0.operStatus = not getdata['apsystemCurOpMode']
+	      if getdata['apsystemCurOpMode'] == 0:
+                 rf0.operStatus = 1
+              else:
+                 rf0.operStatus = 2
            om = self.processInt(log, device, rf0)
 	   om.type=rf0.type
            if om: rm.append(om)
